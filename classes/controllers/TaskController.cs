@@ -7,8 +7,10 @@ using TaskScheduler.classes.interfaces;
 
 namespace TaskScheduler.classes.controllers
 {
+   
     public class TaskController : TaskExecutor
     {
+
         List<Task> tasks = new List<Task>();
 
         public void addTask(string name, int priority, DateTime deadline)

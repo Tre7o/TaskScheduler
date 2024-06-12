@@ -11,14 +11,14 @@ namespace TaskScheduler.classes
     {
         public string username { get; set; }
         public string password { get; set; }
-        public TaskController myTaskController { get; set; }
+        TaskController myTaskcontroller = new TaskController();
 
 
-        public User(string name, string pwd, TaskController myTaskCtrl)
+        public User(string name, string pwd, TaskController tskCtrl)
         {
             username = name;
             password = pwd;
-            myTaskController = myTaskCtrl;
+            myTaskcontroller = tskCtrl;
         }
 
 
