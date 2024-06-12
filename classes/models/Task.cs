@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskScheduler
 {
-    internal class Task
+    public class Task
     {
         public string _taskName { get; set; }
         public int _priority { get; set; }

@@ -7,7 +7,7 @@ using TaskScheduler.classes.interfaces;
 
 namespace TaskScheduler.classes.controllers
 {
-    internal class TaskController : TaskExecutor
+    public class TaskController : TaskExecutor
     {
         List<Task> tasks = new List<Task>();
 
@@ -23,13 +23,23 @@ namespace TaskScheduler.classes.controllers
 
         public Task getNextTask()
         {
-            if(tasks.Count == 0) {
-                Console.WriteLine("No Tasks Available"); 
+            if (tasks.Count == 0)
+            {
+                Console.WriteLine("No Tasks Available\n");
             }
-            tasks = tasks.OrderBy(t=>t._priority).ToList();
-            tasks.RemoveAt(0);
-            return tasks.First();
-        }
+            try {
+               
+                tasks = tasks.OrderByDescending(t => t._priority).ToList();
+                Task nextTask = tasks.First();
+                tasks.RemoveAt(0);
+                return nextTask;
+
+            } catch (Exception e)
+            {
+                Console.WriteLine("\nNo more items in the task list: " + e.Message);
+                return null;
+            }
+          }
 
         public void executeAllTasks()
         {
@@ -41,6 +51,7 @@ namespace TaskScheduler.classes.controllers
                 executeTask(task);
             }
         }
+
 
         public void displayTasks()
         {
