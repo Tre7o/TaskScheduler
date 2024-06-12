@@ -31,61 +31,25 @@ namespace TaskScheduler
             string username_input = Console.ReadLine();
             Console.WriteLine("Enter your password");
             string password_input = Console.ReadLine();
-            User user_input = Users.Find(u => u.username == username_input && u.password == password_input);
-            if (user_input != null)
+
+
+
+            User userObj = Users.Find(u => u.username == username_input && u.password == password_input);
+            Console.WriteLine($"\n\n**********Welcome to your task scheduler, {username_input}!***********\n\n");
+            if (userObj != null)
             {
-                Console.WriteLine($"\n\n**********Welcome to your task scheduler, {username_input}!***********\n\n");
-                Console.WriteLine("Please enter task details");
-
-                string exitCharacter = "0";
-
-                while (exitCharacter == "0")
+                while (true)
                 {
+                    Console.WriteLine("1. Add Task");
+                    Console.WriteLine("2. Execute");
+                    Console.WriteLine("3. Remove");
+                    Console.WriteLine("4. Display");
+                    Console.WriteLine("5. Logout");
 
-                    Console.Write("Task Name: ");
-                    String name = Console.ReadLine();
-
-                    // Reading task priority
-                    int priority = 0;
-                    bool isValidPriority = false;
-                    while (!isValidPriority)
-                    {
-                        Console.Write("Task Priority: ");
-                        string priorityInput = Console.ReadLine();
-                        isValidPriority = int.TryParse(priorityInput, out priority);
-
-                        if (!isValidPriority)
-                        {
-                            Console.WriteLine("Invalid input. Please enter a valid integer for task priority.");
-                        }
-                    }
-
-                    DateTime deadline = DateTime.Now;
-                    bool isValidDate = false;
-
-                    while (!isValidDate)
-                    {
-                        Console.WriteLine("Task Deadline e.g. DD/MM/YYYY  ");
-                        string dateInput = Console.ReadLine();
-                        isValidDate = DateTime.TryParse(dateInput, out deadline);
-
-                        if (!isValidDate)
-                        {
-                            Console.WriteLine("Please enter a valid date for the deadline e.g. DD/MM/YYYY");
-                        }
-                    }
-
-                    user_input.myTaskController.addTask(name, priority, deadline);
-
-                    Console.WriteLine("Enter 0 to continue adding tasks or any other key to stop");
-
-                    exitCharacter = Console.ReadLine();
-
+                    ProgramMenu menu = new ProgramMenu();
+                    menu.RunSwitchCase(userObj);
                 }
-
-                user_input.myTaskController.displayTasks();
-                Console.WriteLine("\n");
-                user_input.myTaskController.executeAllTasks();
+                
             }
             else
             {

@@ -18,7 +18,13 @@ namespace TaskScheduler.classes.controllers
 
         public void removeTask(int index)
         {
-            tasks.RemoveAt(index);
+            try { 
+                tasks.RemoveAt(index);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
 
         public Task getNextTask()
