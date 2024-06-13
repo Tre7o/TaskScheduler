@@ -8,7 +8,7 @@ using TaskScheduler.classes.interfaces;
 namespace TaskScheduler.classes.controllers
 {
    
-    public class TaskController : TaskExecutor
+    public class TaskController 
     {
 
         List<Task> tasks = new List<Task>();
@@ -18,46 +18,36 @@ namespace TaskScheduler.classes.controllers
             tasks.Add(new Task(name, priority, deadline));
         }
 
-        public void removeTask(int index)
+        public void removeTask(string task_name_input)
         {
+            int index = tasks.IndexOf(tasks.Find(t =>task_name_input == t._taskName));
             tasks.RemoveAt(index);
         }
 
-        public Task getNextTask()
+        public List<Task> getNextTask()
         {
-            if (tasks.Count == 0)
+            if (!(tasks.Count == 0))
             {
-                Console.WriteLine("No Tasks Available\n");
+                Console.WriteLine($"{tasks.Count} tasks are available\n");
+                List<Task> sortedTaskList = tasks.OrderByDescending(t => t._priority).ToList();
+                return sortedTaskList;
             }
-            try {
-               
-                tasks = tasks.OrderByDescending(t => t._priority).ToList();
-                Task nextTask = tasks.First();
-                tasks.RemoveAt(0);
-                return nextTask;
-
-            } catch (Exception e)
-            {
-                Console.WriteLine("\nNo more items in the task list: " + e.Message);
-                return null;
-            }
+            return null;
           }
 
         public void executeAllTasks()
-        {
-
-            //while (tasks.Count > 0)
-            for(int i = tasks.Count; i>=0; i-- )
-            {
-                Task task = getNextTask();
-                executeTask(task);
-            }
+        { 
+                List<Task> task = getNextTask();
+                foreach (Task t in tasks)
+                {
+                    Console.WriteLine("Executing " + t._taskName);
+                }
         }
 
 
         public void displayTasks()
         {
-            int count = 0;
+            int count = 1;
             foreach (Task task in tasks)
             {
                 Console.WriteLine("Task " + count);
@@ -69,9 +59,5 @@ namespace TaskScheduler.classes.controllers
             }
         }
 
-        public void executeTask(Task task)
-        {
-            Console.WriteLine("Executing "+task);
-        }
     }
 }

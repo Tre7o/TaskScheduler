@@ -13,8 +13,15 @@ namespace TaskScheduler.classes.controllers
         //CREATE USER
         public void CreateUser(string username, string password)
         {
-            users.Add(username, new User(username, password, new TaskController()));
-            Console.WriteLine("User account created successfully!");
+            try {
+                users.Add(username, new User(username, password));
+                Console.WriteLine("User account created successfully!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Sorry user already exists");
+                Console.WriteLine(e.Message);
+            }
         }
 
         //LOGIN
@@ -35,7 +42,11 @@ namespace TaskScheduler.classes.controllers
                 Console.WriteLine("Enter your password");
                 password_input = Console.ReadLine();
 
+               /* try {
+                } catch (Exception e)
+                {
 
+                }*/
                 if ((username_input == users[username_input].username) && (password_input == users[username_input].password)){
                     Console.WriteLine($"\n\n**********Welcome to your task scheduler, {username_input}!***********\n\n");
                     trials = 0;
