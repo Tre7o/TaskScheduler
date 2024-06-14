@@ -15,11 +15,11 @@ namespace TaskScheduler
         {
             while (true)
             {
-                Console.WriteLine("\n\n\nPlease choose an option:");
+                Console.WriteLine("\n\nPlease choose an option:");
                 Console.WriteLine("1. Add a new task");
                 Console.WriteLine("2. Execute all tasks");
                 Console.WriteLine("3. Remove a task");
-                Console.WriteLine("4. Display all tasks\n\n");
+                Console.WriteLine("4. Display all tasks\n");
                 Console.WriteLine("5. Logout");
 
                 string choice = Console.ReadLine();

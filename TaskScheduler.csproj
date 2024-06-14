@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="classes\controllers\TaskController.cs" />
     <Compile Include="classes\controllers\UserController.cs" />
-    <Compile Include="classes\interfaces\TaskExecutor.cs" />
+    <Compile Include="classes\interfaces\ITaskExecutor.cs" />
     <Compile Include="classes\models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramMenu.cs" />
