@@ -8,7 +8,7 @@ using TaskScheduler.classes.interfaces;
 namespace TaskScheduler.classes.controllers
 {
    
-    public class TaskController 
+    public class TaskController: ITaskExecutor 
     {
 
         List<Task> tasks = new List<Task>();
@@ -24,7 +24,7 @@ namespace TaskScheduler.classes.controllers
             tasks.RemoveAt(index);
         }
 
-        public List<Task> getNextTask()
+        public List<Task> orderByPrioity()
         {
             if (!(tasks.Count == 0))
             {
@@ -37,10 +37,10 @@ namespace TaskScheduler.classes.controllers
 
         public void executeAllTasks()
         { 
-                List<Task> task = getNextTask();
-                foreach (Task t in tasks)
+                List<Task> sortedTasks = orderByPrioity();
+                foreach (Task t in sortedTasks)
                 {
-                    Console.WriteLine("Executing " + t._taskName);
+                    ExecuteTask(t);
                 }
         }
 
@@ -59,5 +59,9 @@ namespace TaskScheduler.classes.controllers
             }
         }
 
+        public void ExecuteTask(Task task)
+        {
+            Console.WriteLine("Executing " + task);
+        }
     }
 }

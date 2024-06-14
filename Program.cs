@@ -16,17 +16,28 @@ namespace TaskScheduler
         {
             string username;
             string password;
-                UserController userController = new UserController();
-                ProgramMenu menu = new ProgramMenu();
-                Console.WriteLine("Enter your username");
-                username = Console.ReadLine();
-                Console.WriteLine("Enter your password");
-                password = Console.ReadLine();
-                userController.CreateUser(username, password);
-                userController.Login();
-                menu.displayProgramMenu(userController.getUser(username) );
-                
-                Console.WriteLine("Choose:\n1. register \n 2. log in \n 3. exit");
+
+            UserController userController = new UserController();
+            ProgramMenu menu = new ProgramMenu();
+
+            // Registering a new user
+            Console.WriteLine("Register to continue");
+            Console.WriteLine("Enter your username");
+            username = Console.ReadLine();
+            Console.WriteLine("Enter your password");
+            password = Console.ReadLine();
+
+            userController.CreateUser(username, password);
+            if (userController.Login() !=  null)
+            {
+                menu.displayProgramMenu(userController.getUser(username));
+            }
+                    
+            Console.WriteLine("Choose:");
+            Console.WriteLine("1. Register");
+            Console.WriteLine("2. Log in");
+            Console.WriteLine("3. Exit");
+
             string choice = Console.ReadLine();
             switch (choice)
             {
@@ -45,6 +56,7 @@ namespace TaskScheduler
 
                 case "2":
                     userController.Login();
+                    menu.displayProgramMenu(userController.getUser(username));
                     break;
 
                 case "3":
@@ -54,7 +66,8 @@ namespace TaskScheduler
                     throw new Exception("\n\nInvalid choice");
 
             }
-                    Console.WriteLine("Press any key to exit");
+            
+            Console.WriteLine("Press any key to exit");
             Console.ReadLine();
 
             Environment.Exit(0);

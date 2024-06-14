@@ -42,20 +42,28 @@ namespace TaskScheduler.classes.controllers
                 Console.WriteLine("Enter your password");
                 password_input = Console.ReadLine();
 
-               /* try {
+               try {
+                    if ((username_input == users[username_input].username) && (password_input == users[username_input].password))
+                    {
+                        Console.WriteLine($"\n**********Welcome to your task scheduler, {username_input}!***********\n");
+                        trials = 0;
+                        return new string[] { username_input, password_input };
+                    }
                 } catch (Exception e)
                 {
-
-                }*/
-                if ((username_input == users[username_input].username) && (password_input == users[username_input].password)){
-                    Console.WriteLine($"\n\n**********Welcome to your task scheduler, {username_input}!***********\n\n");
+                    Console.WriteLine("Invalid credentials!!!");
+                    trials++;
+                    return null;
+                }
+                /* if ((username_input == users[username_input].username) && (password_input == users[username_input].password)){
+                    Console.WriteLine($"\n**********Welcome to your task scheduler, {username_input}!***********\n");
                     trials = 0;
                     return new string[] { username_input, password_input};
                 }else{
                     Console.WriteLine("Invalid credentials!!!");
                     trials++;
                     return null;
-                }
+                } */
 
             }
 
@@ -68,10 +76,6 @@ namespace TaskScheduler.classes.controllers
         {
             return users[username];
         }
-
-
-
-
 
 
     }
