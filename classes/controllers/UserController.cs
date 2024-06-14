@@ -48,7 +48,7 @@ namespace TaskScheduler.classes.controllers
 
                 }*/
                 if ((username_input == users[username_input].username) && (password_input == users[username_input].password)){
-                    Console.WriteLine($"\n\n**********Welcome to your task scheduler, {username_input}!***********\n\n");
+                    Console.WriteLine($"\n**********Welcome to your task scheduler, {username_input}!***********\n");
                     trials = 0;
                     return new string[] { username_input, password_input};
                 }else{
@@ -68,10 +68,6 @@ namespace TaskScheduler.classes.controllers
         {
             return users[username];
         }
-
-
-
-
 
 
     }

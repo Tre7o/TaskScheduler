@@ -16,17 +16,19 @@ namespace TaskScheduler
         {
             string username;
             string password;
-                UserController userController = new UserController();
-                ProgramMenu menu = new ProgramMenu();
-                Console.WriteLine("Enter your username");
-                username = Console.ReadLine();
-                Console.WriteLine("Enter your password");
-                password = Console.ReadLine();
-                userController.CreateUser(username, password);
-                userController.Login();
-                menu.displayProgramMenu(userController.getUser(username) );
+
+            UserController userController = new UserController();
+            ProgramMenu menu = new ProgramMenu();
+            Console.WriteLine("Enter your username");
+            username = Console.ReadLine();
+            Console.WriteLine("Enter your password");
+            password = Console.ReadLine();
+            userController.CreateUser(username, password);
+            userController.Login();
+            menu.displayProgramMenu(userController.getUser(username) );
                 
-                Console.WriteLine("Choose:\n1. register \n 2. log in \n 3. exit");
+            Console.WriteLine("Choose:\n1. register \n 2. log in \n 3. exit");
+
             string choice = Console.ReadLine();
             switch (choice)
             {

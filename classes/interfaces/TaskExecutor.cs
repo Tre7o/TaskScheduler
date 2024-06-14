@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskScheduler.classes.interfaces
 {
-    internal interface TaskExecutor
+    internal interface ITaskExecutor
     {
-        void executeTask(Task task);
+        void ExecuteTask(Task task);
     }
 }
