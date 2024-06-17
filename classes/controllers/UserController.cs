@@ -8,12 +8,7 @@ namespace TaskScheduler.classes.controllers
     internal class UserController
     {
         Dictionary<string, User> users = new Dictionary<string, User>();
-        private readonly TestLogger log;
-
-        public UserController()
-        {
-            log = TestLogger.GetInstance();
-        }
+        private readonly TestLogger log = TestLogger.GetInstance();
 
         //CREATE USER
         public void CreateUser(string username, string password)

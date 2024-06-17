@@ -6,7 +6,6 @@ namespace TaskScheduler
     internal class ProgramMenu
     {
 
-
         public void displayProgramMenu(User authenticatedUser)
         {
             while (true)

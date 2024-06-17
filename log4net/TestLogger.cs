@@ -63,6 +63,8 @@ namespace TaskScheduler.log4net
             BasicConfigurator.Configure(consoleAppender);
             //XmlConfigurator.Configure();
 
+            // ILog logger = LogManager.GetLogger(typeof(TestLogger));
+
             /* logger.Debug("This is Debug information");
             logger.Info("This is Info information");
             logger.Error("This is Error information");

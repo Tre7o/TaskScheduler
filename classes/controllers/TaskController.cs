@@ -1,7 +1,9 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaskScheduler.classes.interfaces;
+using TaskScheduler.log4net;
 
 namespace TaskScheduler.classes.controllers
 {
@@ -10,6 +12,8 @@ namespace TaskScheduler.classes.controllers
     {
 
         List<Task> tasks = new List<Task>();
+
+        private readonly TestLogger logger = TestLogger.GetInstance();
 
         public void addTask(string name, int priority, DateTime deadline)
         {
@@ -46,15 +50,25 @@ namespace TaskScheduler.classes.controllers
         public void displayTasks()
         {
             int count = 1;
-            foreach (Task task in tasks)
+
+            ILog log = logger.TestLog4Net();
+
+            try
             {
-                Console.WriteLine("Task " + count);
-                Console.WriteLine("Name: " + task._taskName);
-                Console.WriteLine("Deadline: " + task._deadline);
-                Console.WriteLine("Priority: " + task._priority);
-                Console.WriteLine("====================================================\n");
-                count++;
+                foreach (Task task in tasks)
+                {
+                    Console.WriteLine("Task " + count);
+                    Console.WriteLine("Name: " + task._taskName);
+                    Console.WriteLine("Deadline: " + task._deadline);
+                    Console.WriteLine("Priority: " + task._priority);
+                    Console.WriteLine("====================================================\n");
+                    count++;
+                }
             }
+            catch (Exception e) { 
+                log.Error(e);
+            }
+            
         }
 
         public void ExecuteTask(Task task)
