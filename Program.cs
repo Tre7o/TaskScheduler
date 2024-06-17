@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Services;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TaskScheduler.classes.controllers;
-using TaskScheduler.classes;
-using TaskScheduler.log4net;
 
 namespace TaskScheduler
 {
@@ -33,10 +25,6 @@ namespace TaskScheduler
                 switch (choice)
                 {
                     case "1":
-                        /* int trials = 1;
-                        while (trials<=3)
-                        { */
-                        // Registering a new user
 
                         Console.WriteLine("Enter username");
                         username = Console.ReadLine();
@@ -48,8 +36,6 @@ namespace TaskScheduler
                             menu.displayProgramMenu(userController.getUser(username));
                         }
 
-                        /*    trials++;
-                        } */
                         break;
 
                     case "2":
@@ -64,18 +50,14 @@ namespace TaskScheduler
                         break;
 
                     case "3":
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadLine();
                         return;
                     default:
                         throw new Exception("\n\nInvalid choice");
 
                 }
             }
-            
-            Console.WriteLine("Press any key to exit");
-            Console.ReadLine();
-
-            Environment.Exit(0);
-
         }
     }
 }

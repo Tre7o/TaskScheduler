@@ -8,6 +8,27 @@ namespace TaskScheduler.log4net
 {
     public class TestLogger
     {
+        private static TestLogger instance; // instance of TestLogger
+        private static ILog logger; // instance of ILog
+
+        // private so that no other objects can instantiate the class thru constructor
+        private TestLogger()
+        {
+            // Step 4 Get intsance of the logger
+            logger = LogManager.GetLogger(typeof(TestLogger));
+        }
+
+        // retruning instance of TestLogger
+        public static TestLogger GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new TestLogger();
+            }
+            return instance;
+        }
+
+        // method to perform logging
         public ILog TestLog4Net()
         {
             // Step 1. Create the layout
@@ -39,14 +60,8 @@ namespace TaskScheduler.log4net
             fileAppender.ActivateOptions();
 
             // Step 3. Initialize the configuration
-            BasicConfigurator.Configure(fileAppender);
+            BasicConfigurator.Configure(consoleAppender);
             //XmlConfigurator.Configure();
-            
-
-            //BasicConfigurator.Configure(fileAppender);
-
-            // Step 4 Get intsance of the logger
-            ILog logger = LogManager.GetLogger(typeof(TestLogger));
 
             /* logger.Debug("This is Debug information");
             logger.Info("This is Info information");

@@ -12,10 +12,8 @@ namespace TaskScheduler.classes.controllers
 
         public UserController()
         {
-            log = new TestLogger();
+            log = TestLogger.GetInstance();
         }
-
-
 
         //CREATE USER
         public void CreateUser(string username, string password)
@@ -42,7 +40,6 @@ namespace TaskScheduler.classes.controllers
             ILog logger = log.TestLog4Net();
 
             //allow a maximum of 3 trials for logging in
-
             while (trials == 0 || trials < 3)
             {
 
@@ -57,7 +54,6 @@ namespace TaskScheduler.classes.controllers
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Invalid credentials!!!");
                     logger.Error("Invalid Credentials");
                     trials++;
                     return null;
