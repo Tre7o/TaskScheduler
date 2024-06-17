@@ -1,57 +1,55 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TaskScheduler.log4net;
 
 namespace TaskScheduler.classes.controllers
 {
     internal class UserController
     {
         Dictionary<string, User> users = new Dictionary<string, User>();
+        private readonly TestLogger log = TestLogger.GetInstance();
 
         //CREATE USER
         public void CreateUser(string username, string password)
         {
-            try {
+            ILog logger = log.TestLog4Net();
+            try
+            {
                 users.Add(username, new User(username, password));
                 Console.WriteLine("User account created successfully!");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Sorry user already exists");
-                Console.WriteLine(e.Message);
+                // Console.WriteLine("Sorry user already exists");
+                logger.Error(e);
             }
         }
 
         //LOGIN
-        public string[] Login()
+        public string[] Login(string username_input, string password_input)
         {
-            string username_input;
-            string password_input;
+
             int trials = 0;
 
+            ILog logger = log.TestLog4Net();
 
             //allow a maximum of 3 trials for logging in
-
             while (trials == 0 || trials < 3)
             {
-                Console.WriteLine("**********LOGIN***********");
-                Console.WriteLine("Enter your username");
-                username_input = Console.ReadLine();
-                Console.WriteLine("Enter your password");
-                password_input = Console.ReadLine();
 
-               try {
+                try
+                {
                     if ((username_input == users[username_input].username) && (password_input == users[username_input].password))
                     {
                         Console.WriteLine($"\n**********Welcome to your task scheduler, {username_input}!***********\n");
                         trials = 0;
                         return new string[] { username_input, password_input };
                     }
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
-                    Console.WriteLine("Invalid credentials!!!");
+                    logger.Error("Invalid Credentials");
                     trials++;
                     return null;
                 }

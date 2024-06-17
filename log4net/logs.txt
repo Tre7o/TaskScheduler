@@ -1,0 +1,5 @@
+System.ArgumentException: An item with the same key has already been added.
+   at System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   at System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   at TaskScheduler.classes.controllers.UserController.CreateUser(String username, String password) in C:\Users\John Suubi\AnotherTaskScheduler\classes\controllers\UserController.cs:line 26
