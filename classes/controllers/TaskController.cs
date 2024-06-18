@@ -31,11 +31,6 @@ namespace TaskScheduler.classes.controllers
 
             ILog log = logger.TestLog4Net();
 
-            if (tasks.Count == 0)
-            {
-                log.Error("No Tasks Available\n");
-                Console.WriteLine("No Tasks Available\n");
-            }
             try
             {
 
@@ -55,8 +50,7 @@ namespace TaskScheduler.classes.controllers
         public void executeAllTasks()
         {
 
-            //while (tasks.Count > 0)
-            for (int i = tasks.Count; i >= 0; i--)
+            while (tasks.Count > 0)
             {
                 Task task = getNextTask();
                 ExecuteTask(task);

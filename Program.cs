@@ -50,7 +50,7 @@ namespace TaskScheduler
                         break;
 
                     case "3":
-                        Console.WriteLine("Press any key to exit");
+                        Console.WriteLine("Press the ENTER key to exit");
                         Console.ReadLine();
                         return;
                     default:
