@@ -26,23 +26,34 @@ namespace TaskScheduler.classes.controllers
             tasks.RemoveAt(index);
         }
 
-        public List<Task> orderByPrioity()
+        public Task getNextTask()
         {
-            if (!(tasks.Count == 0))
+
+            ILog log = logger.TestLog4Net();
+
+            try
             {
-                Console.WriteLine($"{tasks.Count} tasks are available\n");
-                List<Task> sortedTaskList = tasks.OrderByDescending(t => t._priority).ToList();
-                return sortedTaskList;
+
+                tasks = tasks.OrderByDescending(t => t._priority).ToList();
+                Task nextTask = tasks.First();
+                tasks.RemoveAt(0);
+                return nextTask;
+
             }
-            return null;
+            catch (Exception e)
+            {
+                log.Error(e.Message);
+                return null;
+            }
         }
 
         public void executeAllTasks()
         {
-            List<Task> sortedTasks = orderByPrioity();
-            foreach (Task t in sortedTasks)
+
+            while (tasks.Count > 0)
             {
-                ExecuteTask(t);
+                Task task = getNextTask();
+                ExecuteTask(task);
             }
         }
 
